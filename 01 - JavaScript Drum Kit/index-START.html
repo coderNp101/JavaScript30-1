@@ -63,6 +63,8 @@
     audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     if (!audio) return;
 
+    audio.currentTime = 0; // rewind to the start (To make it flow nicer)
+
     audio.play();
   })
 </script>
