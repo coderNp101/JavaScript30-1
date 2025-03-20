@@ -67,7 +67,6 @@
       transform: translateX(50%);
       transform-origin: 0%;
       transform: rotate(90deg);
-      transition: all 0.05s;
       transition-timing-function: cubic-bezier(0.1, 2.5, 0.5, 1);
     }
 
@@ -95,13 +94,20 @@
     const secondHand = document.querySelector('.second-hand');
     const minHand = document.querySelector('.min-hand');
     const hourHand = document.querySelector('.hour-hand');
+    const hand = document.querySelector('.hand');
+    
     function setDate() {
       const now = new Date();
       const seconds = now.getSeconds();
       const secondsDeg = (seconds * 6 + 90) + 180;
-      secondHand.style.transform = `rotate(${secondsDeg}deg)`;
+      
       console.log(seconds);
 
+      if (secondsDeg != 0) {
+        hand.style.transition = `all 0.05s`;
+      }
+
+      secondHand.style.transform = `rotate(${secondsDeg}deg)`;
       const min = now.getMinutes();
       const minDeg = min * 6 + 90 + 180 
 
@@ -112,6 +118,7 @@
       minHand.style.transform = `rotate(${minDeg}deg)`;
       hourHand.style.transform = `rotate(${hourDeg}deg)`;
 
+      
     }
 
     setInterval(setDate, 1000);
